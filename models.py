@@ -1,5 +1,4 @@
 import datetime
-
 from peewee import *
 from flask_login import UserMixin
 from passlib.hash import sha256_crypt
@@ -10,7 +9,7 @@ DATABASE = SqliteDatabase('aq.db')
 
 
 class User(UserMixin, Model):
-    user_key = AutoField(unique=True)
+    id = AutoField(unique=True)
     first_name = CharField(unique=True)
     last_name = CharField(unique=True)
     username = CharField(unique=True)
@@ -27,6 +26,7 @@ class User(UserMixin, Model):
     def create_user(cls, first_name, last_name, username, email, password, admin=False):
         try:
             cls.create(
+                # id=id,
                 first_name=first_name,
                 last_name=last_name,
                 username=username,
@@ -41,5 +41,5 @@ class User(UserMixin, Model):
 
 def initialize():
     DATABASE.connect()
-    DATABASE.create_tables([User], safe=True)
+    DATABASE.create_tables(['user'], safe=True)
     DATABASE.close()

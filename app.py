@@ -45,26 +45,36 @@ def after_request(response):
 @app.route('/', methods=('GET', 'POST'))
 def home_screen():
     form = forms.Login()
-    return render_template('login.html', form=form)
-
-
-@app.route('/', methods=('GET', 'POST'))
-def register():
-    form = forms.Login()
     if form.validate_on_submit():
         try:
-            user = models.User.get(models.User.email == form.email.data)
+            user = models.User.get(models.User.username == form.username.data)
         except models.DoesNotExist:
             flash("Authentication Error", "Error")
         else:
             if sha256_crypt.verify(form.password.data.encode('utf-8'), user.password.encode('utf-8')):
                 login_user(user)
                 flash("You're Logged in!", "Success")
-                return redirect(url_for('index'))
+                return redirect('/aq')
             else:
                 flash("Authentication Error", "Error")
     else:
         return render_template('login.html', form=form)
+
+
+@app.route('/register', methods=('GET', 'POST'))
+def register():
+    form = forms.Register()
+    if form.validate_on_submit():
+        flash("Yay! you registered!", "success")
+        models.User.create_user(
+            first_name=form.first_name.data,
+            last_name=form.last_name.data,
+            username=form.username.data,
+            email=form.email.data,
+            password=form.password.data
+        )
+        return redirect(url_for('index.html'))
+    return render_template('register.html', form=form)
 
 
 @app.route('/aq')
@@ -87,4 +97,5 @@ def air_quality():
 
 
 if __name__ == '__main__':
+    models.initialize()
     app.run(debug=DEBUG, port=PORT, host=HOST)

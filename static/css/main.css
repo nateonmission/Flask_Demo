@@ -1,3 +1,9 @@
+/*
+* {
+    border: greenyellow solid 1px;
+}
+*/
+
 body {
     display: flex;
     flex-direction: column;
@@ -13,6 +19,28 @@ body {
     padding: 1REM;
     display: flex;
     flex-direction: column;
+}
+
+dl {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display:inline;
+}
+
+dt {
+    margin-top: 1REM;
+}
+
+dd {
+    margin: 0;
+    padding: 0;
+}
+
+form.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 h1 {
@@ -42,14 +70,11 @@ h3 a {
 }
 
 .button {
-    width: 100%;
+    margin: 1REM;
+    width: 75%;
     background-color: darkred;
     font-size: 1.5REM;
     color: #86989B;
-}
-
-ul.readings {
-    margin: 0 auto;
 }
 
 .readings {

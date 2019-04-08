@@ -2,23 +2,24 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField
 from wtforms.validators import (DataRequired, Regexp, ValidationError,
                                 Email, Length, EqualTo)
+import models
 
 
 # Functions for preventing duplicate registrations
 def name_exists(form, field):
-    if User.select().where(User.username == field.data).exists():
+    if models.User.select().where(models.User.username == field.data).exists():
         raise ValidationError('Username is taken')
 
 
 def email_exists(form, field):
-    if User.select().where(User.username == field.data).exists():
+    if models.User.select().where(models.User.email == field.data).exists():
         raise ValidationError('Email is already used')
 
 
 # Form Schemata
 # Login Form on login.html
 class Login(FlaskForm):
-    id = StringField("Username: ", validators=[DataRequired()])
+    username = StringField("Username: ", validators=[DataRequired()])
     password = StringField("Password: ", validators=[DataRequired()])
 
 
@@ -57,7 +58,7 @@ class Register(FlaskForm):
     password = PasswordField('Password: ', validators=[
             DataRequired(),
             Length(min=4),
-            EqualTo('password2',"Passwords must match")
+            EqualTo('password2', "Passwords must match")
     ])
     password2 = PasswordField('Confirm Password: ', validators=[
             DataRequired(),

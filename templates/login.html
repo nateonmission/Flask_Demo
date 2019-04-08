@@ -6,7 +6,7 @@
 
 <form class="login" method="POST" action="/">
     {{ form.csrf_token }}
-    {{ form.id.label }} {{ form.id(size=20) }}
+    {{ form.username.label }} {{ form.username(size=20) }}
     {{ form.password.label }} {{ form.password(size=20) }}
     <br><input type="submit" value="Login" class="button login">
 </form>
