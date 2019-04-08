@@ -6,10 +6,14 @@
 
 <form class="login" method="POST" action="/">
     {{ form.csrf_token }}
+    {{ form.first_name.label }} {{ form.first_name(size=20) }}
+    {{ form.last_name.label }} {{ form.last_name(size=20) }}<br>
     {{ form.id.label }} {{ form.id(size=20) }}
+    {{ form.email.label }} {{ form.email(size=20) }}<br>
     {{ form.password.label }} {{ form.password(size=20) }}
-    <input type="submit" value="Go">
+    {{ form.password2.label }} {{ form.password2(size=20) }}<br>
+    <input type="submit" value="Go" class="button">
 </form>
-    <h3><a href="{{ url_for('register')}}">Or Create Username.</a></h3>
+    <h3><a href="{{ url_for('login')}}">Or Login.</a></h3>
 
 {%  endblock %}
