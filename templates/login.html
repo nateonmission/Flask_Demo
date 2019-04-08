@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{%  block content %}
+
+<h2 class="heading"> Log In To Access Site </h2>
+
+
+<form class="login" method="POST" action="/">
+    {{ form.csrf_token }}
+    {{ form.id.label }} {{ form.id(size=20) }}
+    {{ form.password.label }} {{ form.password(size=20) }}
+    <input type="submit" value="Go">
+</form>
+    <h3><a href="{{ url_for('register')}}">Or Create Username.</a></h3>
+
+{%  endblock %}

@@ -1,0 +1,42 @@
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: darkred;
+}
+
+.content {
+    margin: 0 auto;
+    background-color: black;
+    color: #86989B;
+    border: #86989B solid 1px;
+    border-radius: 1REM;
+    padding: 1REM;
+}
+
+h1 {
+    margin: 1REM auto 1REM;
+}
+
+h2.heading {
+    margin: 1REM auto 1REM;
+    text-align: center;
+    border: yellow solid 1px;
+}
+
+h3 a {
+    margin: 0 auto;
+    text-align: center;
+    color: #86989B;
+}
+
+ul.readings {
+    margin: 0 auto;
+}
+
+.readings {
+    color: yellow;
+}
+
+.login {
+
+}
