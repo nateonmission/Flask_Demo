@@ -11,6 +11,8 @@ body {
     border: #86989B solid 1px;
     border-radius: 1REM;
     padding: 1REM;
+    display: flex;
+    flex-direction: column;
 }
 
 h1 {
@@ -20,12 +22,29 @@ h1 {
 h2.heading {
     margin: 1REM auto 1REM;
     text-align: center;
-    border: yellow solid 1px;
+}
+
+h3 {
+    margin: 1REM auto 1REM;
+    text-align: center;
+    color: #86989B;
 }
 
 h3 a {
-    margin: 0 auto;
+    margin: 1REM auto 1REM;
     text-align: center;
+    color: #86989B;
+}
+
+.login {
+    margin: 1REM auto 0REM;
+    text-align: center;
+}
+
+.button {
+    width: 100%;
+    background-color: darkred;
+    font-size: 1.5REM;
     color: #86989B;
 }
 
