@@ -96,6 +96,11 @@ def air_quality():
     return render_template('aq_data.html', site_list=site_list, curr_time=curr_time)
 
 
+@app.route('/db_admin_main', methods=('GET', 'POST'))
+def db_admin_main():
+    return render_template('db_admin_main.html')
+
+
 if __name__ == '__main__':
     models.initialize()
     app.run(debug=DEBUG, port=PORT, host=HOST)

@@ -84,3 +84,12 @@ h3 a {
 .login {
 
 }
+
+
+/* db_admin */
+#create{
+    display: none;
+}
+#edit{
+    display: none;
+}

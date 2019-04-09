@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{%  block content %}
+
+    <h1>Do you want to <i>Create</i> or <i>Edit</i> a Database?</h1>
+
+
+    <select id="to_do" onchange="to_do()">
+        <option value="Select One...">Select One...</option>
+        <option value="Create">Create</option>
+        <option value="Edit">Edit</option>
+    </select>
+
+    <div id="create">
+        <p>CREATE: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+
+
+    <div id="edit">
+<p>EDIT: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
+{% endblock %}
