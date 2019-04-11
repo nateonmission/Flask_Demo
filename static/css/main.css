@@ -101,6 +101,17 @@ nav {
 }
 
 div.nav_item {
+    margin: 0.5REM;
+    padding: 0.75REM;
+}
+/*
+div.nav_item:hover {
+    background-color: #86989b;
+    color: #000;
+}
+*/
+
+div.nav_item a {
     border: 1px solid #86989b;
     border-radius: 1REM;
     margin: 0.5REM;
@@ -111,6 +122,7 @@ div.nav_item a:hover {
     background-color: #86989b;
     color: #000;
 }
+
 
 div.notification {
     background-color: green;
