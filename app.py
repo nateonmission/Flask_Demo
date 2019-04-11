@@ -21,6 +21,8 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 
+year = datetime.datetime.now().strftime("%Y")
+
 
 @login_manager.user_loader
 def load_user(username):
@@ -45,7 +47,6 @@ def after_request(response):
 @app.route('/', methods=('GET', 'POST'))
 def login():
     form = forms.Login()
-    year = datetime.datetime.now().strftime("%Y")
     if form.validate_on_submit():
         try:
             user = models.User.get(models.User.username == form.username.data)
@@ -55,7 +56,7 @@ def login():
             if sha256_crypt.verify(form.password.data.encode('utf-8'), user.password.encode('utf-8')):
                 login_user(user)
                 flash("You're Logged in " + user.username + "!", "Success")
-                return redirect('/aq')
+                return redirect('/landing')
             else:
                 flash("Authentication Error", "Error")
     else:
@@ -78,6 +79,17 @@ def register():
     return render_template('register.html', form=form)
 
 
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
+
+
+@app.route('/landing')
+def landing():
+    return render_template('landing.html', year=year)
+
+
 @app.route('/aq')
 @login_required
 def air_quality():
@@ -85,7 +97,7 @@ def air_quality():
     res = requests.get(url)
     data = json.loads(res.text)
     curr_time = datetime.datetime.now().strftime("%A, %d %B %Y (%H:%M)")
-    year = datetime.datetime.now().strftime("%Y")
+    # year = datetime.datetime.now().strftime("%Y")
     site_list = []
     for site in data['Sites']:
         site_name = site['SiteDescription']
