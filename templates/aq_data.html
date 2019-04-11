@@ -1,16 +1,15 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h1 class="time"> {{ curr_time }}</h1>
+    <h1>AQ Data from Louisville's Open API Project</h1>
+    <h1 class="time"> {{ curr_time }}</h1>
 
-{% for site in site_list %}
-    <h2 class="site"> {{ site[0] }} </h2>
-    <ul class="readings">
-    {% for reading in site[1] %}
-        <li> {{ reading }}</li>
-    {%  endfor %}
-    </ul>
-
-{% endfor %}
-
+    {% for site in site_list %}
+        <h2 class="site"> {{ site[0] }} </h2>
+        <ul class="readings">
+            {% for reading in site[1] %}
+                <li> {{ reading }}</li>
+            {%  endfor %}
+        </ul>
+    {% endfor %}
 {% endblock %}

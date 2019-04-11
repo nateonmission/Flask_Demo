@@ -3,16 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Louisville's Current Air Quality</title>
+    <script src="{{ url_for('static', filename='css/main.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 <body>
     <div class="menu">
         {% block menu %}
+            {% if current_user.is_authenticated %}
+                <nav>
+                    <div class="nav_item"><a href="/db_admin">DB Admin</a></div>
+                    <div class="nav_item"><a href="/aq">Air Quality</a></div>
+
+                    <div class="nav_item"><a href="/logout">Log Out</a></div>
+                </nav>
+            {% endif %}
+
+            {% with messages = get_flashed_messages(with_categories=True) %}
+                {%  if messages %}
+                    {%  for category, message in messages %}
+                        <div class="notification {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
         {% endblock %}
     </div>
+
     <div class="content">
         {% block content %}
         {% endblock %}
     </div>
+
+    <footer>
+        <p class="footer">Site Copyright {{ year }} J. Nathan Allen</p>
+    </footer>
 </body>
 </html>

@@ -25,7 +25,7 @@ login_manager.login_view = 'login'
 @login_manager.user_loader
 def load_user(username):
     try:
-        return models.User.get(models.User.username == username)
+        return models.User.get(username) #(models.User.username == username)
     except models.DoesNotExist:
         return None
 
@@ -43,8 +43,9 @@ def after_request(response):
 
 
 @app.route('/', methods=('GET', 'POST'))
-def home_screen():
+def login():
     form = forms.Login()
+    year = datetime.datetime.now().strftime("%Y")
     if form.validate_on_submit():
         try:
             user = models.User.get(models.User.username == form.username.data)
@@ -53,12 +54,12 @@ def home_screen():
         else:
             if sha256_crypt.verify(form.password.data.encode('utf-8'), user.password.encode('utf-8')):
                 login_user(user)
-                flash("You're Logged in!", "Success")
+                flash("You're Logged in " + user.username + "!", "Success")
                 return redirect('/aq')
             else:
                 flash("Authentication Error", "Error")
     else:
-        return render_template('login.html', form=form)
+        return render_template('login.html', form=form, year=year)
 
 
 @app.route('/register', methods=('GET', 'POST'))
@@ -78,11 +79,13 @@ def register():
 
 
 @app.route('/aq')
+@login_required
 def air_quality():
     url = "https://aaws.louisvilleky.gov/api/v1/Monitor/CityAQI"
     res = requests.get(url)
     data = json.loads(res.text)
     curr_time = datetime.datetime.now().strftime("%A, %d %B %Y (%H:%M)")
+    year = datetime.datetime.now().strftime("%Y")
     site_list = []
     for site in data['Sites']:
         site_name = site['SiteDescription']
@@ -93,7 +96,7 @@ def air_quality():
                 reading_text = reading['ParameterDescription'] + ": " + str(reading['Average']) + " " + reading['Units']
                 readings_list.append(reading_text)
         site_list.append([site_name, readings_list])
-    return render_template('aq_data.html', site_list=site_list, curr_time=curr_time)
+    return render_template('aq_data.html', site_list=site_list, curr_time=curr_time, year=year)
 
 
 @app.route('/db_admin_main', methods=('GET', 'POST'))

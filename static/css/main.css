@@ -7,11 +7,20 @@
 body {
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
     background-color: darkred;
+    padding: 0;
+    margin: 0;
+
+}
+
+a, a:hover, a:visited {
+    text-decoration: none;
+    color: #86989B;
 }
 
 .content {
-    margin: 0 auto;
+    margin: 2REM auto;
     background-color: black;
     color: #86989B;
     border: #86989B solid 1px;
@@ -77,6 +86,37 @@ h3 a {
     color: #86989B;
 }
 
+div.menu {
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    color: #86989b;
+    min-width: 100%;
+    margin: 0REM, 0REM, 1REM;
+}
+
+nav {
+    display: flex;
+
+}
+
+div.nav_item {
+    border: 1px solid #86989b;
+    border-radius: 1REM;
+    margin: 0.5REM;
+    padding: 1REM;
+}
+
+div.nav_item a:hover {
+    background-color: #86989b;
+    color: #000;
+}
+
+div.notification {
+    background-color: green;
+    font-weight: bold;
+}
+
 .readings {
     color: yellow;
 }
@@ -92,4 +132,16 @@ h3 a {
 }
 #edit{
     display: none;
+}
+
+footer {
+    background-color: black;
+    color: #86989b;
+    min-width: 100%;
+    margin: 0REM, 0REM, 1REM;
+}
+
+footer p {
+    /*margin: 0 auto;*/
+    text-align: center;
 }
