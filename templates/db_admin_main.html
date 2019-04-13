@@ -11,11 +11,13 @@
     </select>
 
     <div id="create">
-        <dl>
-            <dt>{{ form.csrf_token }}</dt>
-            <dt>{{ form.db_name.label }}</dt> <dd>{{ form.db_name(size=60) }}</dd>
-        </dl>
-        <input type="submit" value="Register" class="button">
+        <form class="login" method="POST" action="/db_admin">
+            <dl>
+                <dt>{{ form.csrf_token }}</dt>
+                <dt>{{ form.db_name.label }}</dt> <dd>{{ form.db_name(size=60) }}</dd>
+            </dl>
+            <input type="submit" value="Create File" class="button">
+        </form>
     </div>
 
 

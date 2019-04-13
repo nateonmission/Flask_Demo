@@ -121,10 +121,10 @@ def db_admin_main():
         result = dbadmin.db_create(form.db_name.data)
         if result == "success":
             flash("Yay! you created a DB!", "success")
-            return render_template('db_result.html', result)
+            return render_template('db_result.html', result=result)
         else:
             flash("Oh nos! It didn't work!", "fail")
-            return render_template('db_result.html', result)
+            return render_template('db_result.html', result=result)
     return render_template('db_admin_main.html', form=form)
 
 
