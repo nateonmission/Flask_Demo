@@ -11,7 +11,11 @@
     </select>
 
     <div id="create">
-        <p>CREATE: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <dl>
+            <dt>{{ form.csrf_token }}</dt>
+            <dt>{{ form.db_name.label }}</dt> <dd>{{ form.db_name(size=60) }}</dd>
+        </dl>
+        <input type="submit" value="Register" class="button">
     </div>
 
 

@@ -9,6 +9,7 @@ import datetime
 
 import forms
 import models
+import dbadmin
 
 DEBUG = True
 PORT = 8000
@@ -86,6 +87,7 @@ def logout():
 
 
 @app.route('/landing')
+@login_required
 def landing():
     return render_template('landing.html', year=year)
 
@@ -111,9 +113,19 @@ def air_quality():
     return render_template('aq_data.html', site_list=site_list, curr_time=curr_time, year=year)
 
 
-@app.route('/db_admin_main', methods=('GET', 'POST'))
+@app.route('/db_admin', methods=('GET', 'POST'))
+@login_required
 def db_admin_main():
-    return render_template('db_admin_main.html')
+    form = forms.DbCreate()
+    if form.validate_on_submit():
+        result = dbadmin.db_create(form.db_name.data)
+        if result == "success":
+            flash("Yay! you created a DB!", "success")
+            return render_template('db_result.html', result)
+        else:
+            flash("Oh nos! It didn't work!", "fail")
+            return render_template('db_result.html', result)
+    return render_template('db_admin_main.html', form=form)
 
 
 if __name__ == '__main__':

@@ -63,3 +63,14 @@ class Register(FlaskForm):
     password2 = PasswordField('Confirm Password: ', validators=[
             DataRequired(),
     ])
+
+
+# DB Creation Form on db_admin_main.html for creating db files
+class DbCreate(FlaskForm):
+    db_name = StringField("DB Name: ", validators=[
+        DataRequired(),
+        Regexp(
+            r'^[a-zA-Z0-9_-]+$',
+            message="Names can only contain letter, underscore, and a dash"
+        )
+    ])

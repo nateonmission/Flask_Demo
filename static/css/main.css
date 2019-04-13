@@ -105,12 +105,6 @@ div.nav_item {
     padding: 0.75REM;
 }
 
-/*
-div.nav_item:hover {
-    background-color: #86989b;
-    color: #000;
-}
-*/
 
 div.nav_item a {
     border: 1px solid #86989b;
@@ -128,6 +122,9 @@ div.nav_item a:hover {
 div.notification {
     background-color: green;
     font-weight: bold;
+    min-width: 100%;
+    text-align: center;
+    color: black;
 }
 
 .readings {

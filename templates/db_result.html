@@ -1,0 +1,11 @@
+
+{% extends "layout.html" %}
+
+{% block content %}
+    {% if result == "success" %}
+    <h1> DB: {{ db_file }} created </h1>
+    {% else %}
+    <h1> DB creation failed</h1>
+    {%  endif %}
+
+{% endblock %}
